@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>q2</title>
+</head>
+<body>
+<script type="text/javascript">
+    function Vehicle(type){
+        this.type = type;
+        Vehicle.vehicleCount++;
+    }
+    Vehicle.vehicleCount = 0;
+    console.log(Vehicle.vehicleCount);
+    const vehicle = new Vehicle("Toyota");
+    console.log(vehicle.type);
+    console.log(Vehicle.vehicleCount);
+
+
+    Vehicle.prototype.drive= function (){
+        console.log(this.type + " Vehicle is driving");
+    }
+
+    function Car(type){
+        Vehicle.call(this, type);
+    }
+    Car.prototype = Object.create(Vehicle.prototype);
+    Car.prototype.constructor = Car;
+    Car.prototype.wheelBalance = function (){
+        console.log(this.type + " Wheels are balanced");
+    };
+
+    let car = new Car("Nissan");
+    car.drive();
+    car.wheelBalance();
+    console.log(Vehicle.vehicleCount);
+</script>
+</body>
+</html>
