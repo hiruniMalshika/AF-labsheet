@@ -30,5 +30,18 @@ public class PostEndPoint {
         post.setDescription(postDto.getDescription());
         return postApi.addPost(post);
     }
+    @DeleteMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletePost(@PathVariable String id){
+         postApi.removePost(id);
+    }
+    @PutMapping("/{id}")
+    public Post updatePost(@PathVariable String id, @RequestBody PostDto postDto){
+        Post post = new Post();
+        post.setId(id);
+        post.setName(postDto.getName());
+        post.setDescription(postDto.getDescription());
+        return postApi.replacePost(post);
+    }
 
 }

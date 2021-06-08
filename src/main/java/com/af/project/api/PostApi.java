@@ -9,6 +9,7 @@ import java.util.*;
 public class PostApi {
     private final Map<String, Post> posts;
 
+
     public PostApi(){
         this.posts = new HashMap<>();
     }
@@ -19,5 +20,14 @@ public class PostApi {
         post.setId(UUID.randomUUID().toString());
         posts.put(post.getId(),post);
         return  post;
+    }
+    public void removePost(String id){
+        posts.remove(id);
+    }
+
+
+    public Post replacePost(Post post) {
+        posts.put(post.getId(), post);
+        return post;
     }
 }
